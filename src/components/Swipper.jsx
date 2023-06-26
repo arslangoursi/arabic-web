@@ -7,15 +7,16 @@ import Img6 from "../assets/image 8.png";
 import Img7 from "../assets/image 9.png";
 import Img8 from "../assets/image 10.png";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { register } from "swiper/element/bundle";
 import "swiper/css";
+import { Autoplay } from "swiper";
 
 register();
 
 export default function Swipper() {
   const swiperElRef = useRef(null);
-
+  const [slidesPerView, setSlidesPerView] = useState();
   useEffect(() => {
     // listen for Swiper events using addEventListener
     swiperElRef.current.addEventListener("progress", (e) => {
@@ -27,41 +28,94 @@ export default function Swipper() {
       console.log("slide changed");
     });
   }, []);
+
+  useEffect(() => {
+    changeSlidesPerView();
+    window.addEventListener("resize", changeSlidesPerView);
+  }, []);
+
+  function changeSlidesPerView() {
+    if (window.innerWidth < 768) {
+      setSlidesPerView(4);
+    } else if (window.innerWidth < 1000) {
+      setSlidesPerView(5);
+    } else if (window.innerWidth < 1300) {
+      setSlidesPerView(6);
+    } else {
+      setSlidesPerView(7);
+    }
+  }
   return (
     <>
       <div className="logos__container">
         <div className="logos__container__list">
           <swiper-container
             ref={swiperElRef}
-            slides-per-view="6"
-            navigation="false"
-            pagination="false"
+            spaceBetween={50}
+            slides-per-view={slidesPerView}
+            loop
+            Autoplay
           >
-            <swiper-slide>
-              <img src={Img1} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img2} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img3} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img4} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img5} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img6} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img7} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            <swiper-slide>
-              <img src={Img8} alt="" />
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
             </swiper-slide>
-            ...
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
+            </swiper-slide>
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
+            </swiper-slide>
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
+            </swiper-slide>
+            <swiper-slide className="swipper__slider">
+              <div className="logos__container__list__img">
+                <img src={Img1} alt="" />
+              </div>
+            </swiper-slide>
           </swiper-container>
         </div>
       </div>
