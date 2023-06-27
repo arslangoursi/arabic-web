@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import FooterLogo from "../assets/footerlogo.png";
 
 export default function Footer({}) {
   return (
     <div className="footer">
       <div className="footer__content">
-        <div className="footer__content__icon">
+        <Link className="footer__content__icon" to="/Favourite">
           <svg
             width="47"
             height="40"
@@ -17,11 +18,11 @@ export default function Footer({}) {
               fill="black"
             />
           </svg>
-        </div>
-        <div className="footer__content__icon">
+        </Link>
+        <Link className="footer__content__icon" to="/">
           <img src={FooterLogo} />
-        </div>
-        <div className="footer__content__icon">
+        </Link>
+        <Link className="footer__content__icon" to="/Search">
           <svg
             width="46"
             height="46"
@@ -36,7 +37,7 @@ export default function Footer({}) {
               fill="black"
             />
           </svg>
-        </div>
+        </Link>
       </div>
     </div>
   );
