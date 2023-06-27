@@ -1,29 +1,55 @@
-import React, { useEffect, useState } from "react";
-import PopupComponent from "../components/PopupComponent";
+import React from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+import Img11 from "../assets/image 11.png";
+import Img12 from "../assets/image 12.png";
+import Img13 from "../assets/image 13.png";
 
-export default function Product({ text, img }) {
-  const [isPopupOpen, setPopupOpen] = useState(false);
-  function togglePopup(e) {
-    setPopupOpen(!isPopupOpen);
-  }
+const images = [
+  {
+    original: Img12,
+    thumbnail: Img12,
+  },
+  {
+    original: Img11,
+    thumbnail: Img11,
+  },
+  {
+    original: Img13,
+    thumbnail: Img13,
+  },
+];
 
-  const handleBodyScroll = () => {
-    document.body.style.overflow = !isPopupOpen ? "auto" : "hidden";
+export default function PopupComponent({ togglePopup }) {
+  const galleryProps = {
+    showFullscreenButton: false,
+    showPlayButton: false,
   };
-
-  useEffect(() => {
-    handleBodyScroll();
-  }, [isPopupOpen]);
-
   return (
     <>
-      <div className="products__container__product" onClick={togglePopup}>
-        <img src={img} />
-        <div className="products__container__product__content">
-          <div className="products__container__product__content__text">
-            {text}
+      <div className="product__popup">
+        <div className="product__popup__container">
+          <div className="product__popup__container__close">
+            <span onClick={togglePopup}>X</span>
           </div>
-          <div className="products__container__product__content__icons">
+          <div className="product__popup__container__gallery">
+            <ImageGallery items={images} {...galleryProps} />
+          </div>
+          <div className="product__popup__container__btns">
+            <div className="products__container__product__content__icon">
+              <svg
+                width="23"
+                height="20"
+                viewBox="0 0 23 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.3311 19.3387C11.1849 19.3395 11.04 19.3115 10.9046 19.2562C10.7693 19.201 10.6462 19.1195 10.5424 19.0165L1.91074 10.3738C0.828025 9.27979 0.220703 7.80274 0.220703 6.26353C0.220703 4.72432 0.828025 3.24727 1.91074 2.15324C3.00192 1.06513 4.48004 0.454102 6.02103 0.454102C7.56202 0.454102 9.04014 1.06513 10.1313 2.15324L11.3311 3.353L12.5308 2.15324C13.622 1.06513 15.1001 0.454102 16.6411 0.454102C18.1821 0.454102 19.6602 1.06513 20.7514 2.15324C21.8341 3.24727 22.4415 4.72432 22.4415 6.26353C22.4415 7.80274 21.8341 9.27979 20.7514 10.3738L12.1198 19.0165C12.016 19.1195 11.8929 19.201 11.7576 19.2562C11.6222 19.3115 11.4773 19.3395 11.3311 19.3387ZM6.02103 2.67536C5.55077 2.67323 5.08475 2.76443 4.64998 2.94368C4.21521 3.12292 3.82033 3.38665 3.4882 3.71959C2.81729 4.39404 2.44068 5.30666 2.44068 6.25797C2.44068 7.20929 2.81729 8.12191 3.4882 8.79636L11.3311 16.6503L19.174 8.79636C19.8449 8.12191 20.2215 7.20929 20.2215 6.25797C20.2215 5.30666 19.8449 4.39404 19.174 3.71959C18.4893 3.07273 17.5831 2.71235 16.6411 2.71235C15.6992 2.71235 14.793 3.07273 14.1083 3.71959L12.1198 5.71919C12.0165 5.82331 11.8937 5.90596 11.7583 5.96236C11.6229 6.01876 11.4777 6.04779 11.3311 6.04779C11.1844 6.04779 11.0392 6.01876 10.9039 5.96236C10.7685 5.90596 10.6456 5.82331 10.5424 5.71919L8.55386 3.71959C8.22174 3.38665 7.82685 3.12292 7.39208 2.94368C6.95731 2.76443 6.4913 2.67323 6.02103 2.67536Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
             <div className="products__container__product__content__icon">
               <svg
                 width="23"
@@ -51,24 +77,12 @@ export default function Product({ text, img }) {
                 />
               </svg>
             </div>
-            <div className="products__container__product__content__icon">
-              <svg
-                width="27"
-                height="27"
-                viewBox="0 0 27 27"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.3311 23.3387C13.1849 23.3395 13.04 23.3115 12.9046 23.2562C12.7693 23.201 12.6462 23.1195 12.5424 23.0165L3.91074 14.3738C2.82802 13.2798 2.2207 11.8027 2.2207 10.2635C2.2207 8.72432 2.82802 7.24727 3.91074 6.15324C5.00192 5.06513 6.48004 4.4541 8.02103 4.4541C9.56202 4.4541 11.0401 5.06513 12.1313 6.15324L13.3311 7.353L14.5308 6.15324C15.622 5.06513 17.1001 4.4541 18.6411 4.4541C20.1821 4.4541 21.6602 5.06513 22.7514 6.15324C23.8341 7.24727 24.4415 8.72432 24.4415 10.2635C24.4415 11.8027 23.8341 13.2798 22.7514 14.3738L14.1198 23.0165C14.016 23.1195 13.8929 23.201 13.7576 23.2562C13.6222 23.3115 13.4773 23.3395 13.3311 23.3387ZM8.02103 6.67536C7.55077 6.67323 7.08475 6.76443 6.64998 6.94368C6.21521 7.12292 5.82033 7.38665 5.4882 7.71959C4.81729 8.39404 4.44068 9.30666 4.44068 10.258C4.44068 11.2093 4.81729 12.1219 5.4882 12.7964L13.3311 20.6503L21.174 12.7964C21.8449 12.1219 22.2215 11.2093 22.2215 10.258C22.2215 9.30666 21.8449 8.39404 21.174 7.71959C20.4893 7.07273 19.5831 6.71235 18.6411 6.71235C17.6992 6.71235 16.793 7.07273 16.1083 7.71959L14.1198 9.71919C14.0165 9.82331 13.8937 9.90596 13.7583 9.96236C13.6229 10.0188 13.4777 10.0478 13.3311 10.0478C13.1844 10.0478 13.0392 10.0188 12.9039 9.96236C12.7685 9.90596 12.6456 9.82331 12.5424 9.71919L10.5539 7.71959C10.2217 7.38665 9.82685 7.12292 9.39208 6.94368C8.95731 6.76443 8.4913 6.67323 8.02103 6.67536Z"
-                  fill="white"
-                />
-              </svg>
-            </div>
+          </div>
+          <div className="product__popup__container__Product__name">
+            Product Name
           </div>
         </div>
       </div>
-      {isPopupOpen && <PopupComponent togglePopup={togglePopup} />}
     </>
   );
 }
