@@ -1,8 +1,31 @@
-import React, { useEffect, useState } from "react";
 import PopupComponent from "../components/PopupComponent";
+import Img11 from "../assets/image 11.png";
+import Img12 from "../assets/image 12.png";
+import Img13 from "../assets/image 13.png";
 
-export default function Product({ text, img }) {
+import { useRef, useEffect, useState } from "react";
+import { register } from "swiper/element/bundle";
+import "swiper/css";
+import "swiper/swiper.min.css";
+
+register();
+
+export default function Product({ text, img, Img21, Img22, Img23 }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const togglePopup = () => {
     if (window.innerWidth >= 650) {
       setPopupOpen(!isPopupOpen);
@@ -17,10 +40,53 @@ export default function Product({ text, img }) {
     handleBodyScroll();
   }, [isPopupOpen]);
 
+  const swiperElRef = useRef(null);
+
+  useEffect(() => {
+    if (swiperElRef.current) {
+      swiperElRef.current.addEventListener("progress", (e) => {
+        const [swiper, progress] = e.detail;
+        console.log(progress);
+      });
+
+      swiperElRef.current.addEventListener("slidechange", (e) => {
+        console.log("slide changed");
+      });
+    }
+  }, []);
+
   return (
     <div className="product__main__container">
       <div className="products__container__product" onClick={togglePopup}>
-        <img src={img} />
+        {windowWidth >= 651 ? (
+          <img src={img} />
+        ) : (
+          <swiper-container
+            ref={swiperElRef}
+            spaceBetween={50}
+            loop
+            Autoplay
+            className="swipper__container"
+          >
+            <swiper-slide className="swipper__slider">
+              <div className="products__container__product">
+                <img src={Img21} />
+              </div>
+            </swiper-slide>
+            <swiper-slide className="swipper__slider">
+              <div className="products__container__product">
+                {" "}
+                <img src={Img22} />
+              </div>
+            </swiper-slide>
+            <swiper-slide className="swipper__slider">
+              <div className="products__container__product">
+                {" "}
+                <img src={Img23} />
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        )}
 
         <div className="products__container__product__content">
           <div className="products__container__product__content__text">
@@ -72,7 +138,14 @@ export default function Product({ text, img }) {
         </div>
       </div>
 
-      {isPopupOpen && <PopupComponent togglePopup={togglePopup} />}
+      {isPopupOpen && (
+        <PopupComponent
+          togglePopup={togglePopup}
+          Img1={Img11}
+          Img2={Img12}
+          Img3={Img13}
+        />
+      )}
       <div className="mobile__view">
         <div className="product__popup__container__btns__mobile">
           <div className="products__container__product__content__icon">

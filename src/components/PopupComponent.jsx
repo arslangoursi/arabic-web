@@ -1,30 +1,26 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import Img11 from "../assets/image 11.png";
-import Img12 from "../assets/image 12.png";
-import Img13 from "../assets/image 13.png";
 
-const images = [
-  {
-    original: Img12,
-    thumbnail: Img12,
-  },
-  {
-    original: Img11,
-    thumbnail: Img11,
-  },
-  {
-    original: Img13,
-    thumbnail: Img13,
-  },
-];
-
-export default function PopupComponent({ togglePopup }) {
+export default function PopupComponent({ togglePopup, Img1, Img2, Img3 }) {
   const galleryProps = {
     showFullscreenButton: false,
     showPlayButton: false,
   };
+  const images = [
+    {
+      original: Img1,
+      thumbnail: Img1,
+    },
+    {
+      original: Img2,
+      thumbnail: Img2,
+    },
+    {
+      original: Img3,
+      thumbnail: Img3,
+    },
+  ];
   return (
     <>
       <div className="product__popup">
