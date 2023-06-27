@@ -78,6 +78,10 @@ body {
 
 .logos__container__list__img img {
   height: 50px;
+  cursor: pointer;
+}
+.logos__container__list__img img:hover {
+  margin-bottom: 2px solid black;
 }
 .logos__container__list swiper-slide,
 .swiper-wrapper {
@@ -179,9 +183,11 @@ body {
 }
 .footer__content__icon svg {
   width: 40px;
+  cursor: pointer;
 }
 .footer__content__icon img {
   width: 40px;
+  cursor: pointer;
 }
 .product__popup {
   position: fixed;
@@ -189,14 +195,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999999999;
 }
 .product__popup__container {
-  background: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -273,6 +278,28 @@ body {
 .image-gallery-thumbnail:focus {
   border: none;
 }
+.mobile__view {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 1.5em;
+}
+.product__popup__container__btns__mobile {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin: 1em 0 0.7em;
+}
+.product__popup__container__Product__name__mobile {
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+}
+.product__main__container {
+  display: flex;
+  flex-direction: column;
+}
 //------------------------------------------------------------------------------
 @media (max-width: 650px) {
   .main__container img {
@@ -301,7 +328,7 @@ body {
     border-radius: 0px;
   }
   .products__container {
-    padding: 3em 4em 4em;
+    padding: 3em 0em 4em;
   }
   .footer__content {
     padding: 0.7em 2em;
@@ -312,7 +339,24 @@ body {
   .footer__content__icon img {
     width: 30px;
   }
+
   .products__container__product__content {
     display: flex;
+  }
+  .mobile__view {
+    display: flex;
+  }
+  .product__main__container {
+    width: 100%;
+  }
+  .products__container__product img {
+    width: 100%;
+  }
+  .products__container__product__content {
+    border-radius: 0px;
+  }
+
+  .products__container__product__content__icons {
+    display: none;
   }
 }
